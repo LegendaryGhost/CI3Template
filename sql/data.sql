@@ -1,7 +1,7 @@
 -- Administrateurs
 INSERT INTO garage_auto_admin (email, mots_de_passe)
-VALUES ('admin@gmail.com', 'admin123'),
-       ('manager@gmail.com', 'manager123');
+VALUES ('admin@gmail.com', PASSWORD('admin123')),
+       ('manager@gmail.com', PASSWORD('manager123'));
 
 -- Horaires d'ouverture
 INSERT INTO garage_auto_ouverture (ouvert, fermer)
@@ -22,7 +22,7 @@ VALUES ('123ABC', 1),
        ('654MNO', 2);
 
 -- Services
-INSERT INTO garage_auto_services (nom, duree, prix)
+INSERT INTO garage_auto_service (nom, duree, prix)
 VALUES ('Réparation simple', '01:00:00', 150000),
        ('Réparation standard', '02:00:00', 250000),
        ('Réparation complexe', '08:00:00', 800000),
