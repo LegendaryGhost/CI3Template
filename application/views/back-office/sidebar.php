@@ -23,16 +23,22 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/appointment'); ?>">
                 <i class="bi bi-calendar-week"></i>
                 <span>Rendez-vous</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/quotation/list'); ?>">
                 <i class="bi bi-receipt"></i>
                 <span>Liste des devis</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/'); ?>">
+                <i class="ri-delete-bin-2-line"></i>
+                <span>Réinitialiser les données</span>
             </a>
         </li>
     </ul>

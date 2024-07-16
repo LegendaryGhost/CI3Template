@@ -8,31 +8,36 @@ class BackOffice extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Admin_model');
+        $this->load->model('RendezVous_model');
+        $this->load->model('Voiture_model');
         $this->load->helper('form');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
-    public function login()
+    public function services_form()
     {
-        $this->load->view(self::VIEW_FOLDER . 'login');
-    }
-
-    public function services_list() {
-        $data['content'] = self::VIEW_FOLDER . 'services/list';
-        $data['title'] = 'Services';
-        $data['services'] = [
-            ['id' => 1, 'nom' => 'Réparation simple', 'duree' => '1h', 'prix' => '150000 Ar'],
-            ['id' => 2, 'nom' => 'Réparation standard', 'duree' => '2h', 'prix' => '250000 Ar'],
-            ['id' => 3, 'nom' => 'Réparation complexe', 'duree' => '8h', 'prix' => '800000 Ar'],
-            ['id' => 4, 'nom' => 'Entretien', 'duree' => '2h30', 'prix' => '300000 Ar']
-        ];
-
-        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
-    }
-
-    public function services_form() {
         $data['content'] = self::VIEW_FOLDER . 'services/form';
         $data['title'] = 'Services';
-
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
+
+    public function appointment()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'appointment';
+        $data['title'] = 'Rendez-vous';
+        $data['voitures'] = $this->Voiture_model->get_all();
+        $data['services'] = $this->Service_model->get_all();
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+
+    public function devis()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'quotation';
+        $data['title'] = 'Devis';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+
 }
